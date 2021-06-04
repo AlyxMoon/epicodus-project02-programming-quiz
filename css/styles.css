@@ -1,3 +1,30 @@
+:root {
+  --color-dark: #0B0B0B;
+  --color-dark-alt: #444;
+  --color-teal: #60FAF0;
+  --color-teal-alt: #8DFCF4;
+  --color-green: #70FD61;
+  --color-green-alt: #99FE8E;
+}
+
+body {
+  min-height: 100vh;
+
+  font-size: 1.1rem;
+
+  background: linear-gradient(
+    45deg,
+    var(--color-dark),
+    var(--color-dark-alt),
+    var(--color-dark),
+    var(--color-dark-alt)
+  );
+
+  border-top: 5px solid var(--color-teal);
+
+  color: white;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
 
 .rounded-none {
   border-radius: 0px !important;
@@ -5,6 +32,34 @@
 
 button {
   height: 50%;
+}
+
+.btn-primary {
+  background-color: var(--color-teal);
+  border-color: var(--color-teal);
+  color: black;
+}
+
+.btn-primary:focus,
+.btn-primary:hover {
+  background-color: var(--color-teal-alt);
+  border-color: var(--color-teal-alt);
+  box-shadow: none;
+  color: black;
+}
+
+.btn-success {
+  background-color: var(--color-green);
+  border-color: var(--color-green);
+  color: black;
+}
+
+.btn-success:focus,
+.btn-success:hover {
+  background-color: var(--color-green-alt);
+  border-color: var(--color-green-alt);
+  box-shadow: none;
+  color: black;
 }
 
 .input-group {
@@ -24,13 +79,14 @@ button {
   padding: 0.5rem 1rem;
 
   font-size: 1rem;
+  text-shadow: none;
 
   overflow-x: auto;
 }
 
 code {
   background-color: #222;
-  color: rgb(110, 200, 100);
+  color: var(--color-teal);
   
   white-space: pre;
 }
@@ -43,4 +99,9 @@ code::selection {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 10px 20px;
+}
+
+.questionnaire-results .card {
+  color: black;
+  text-shadow: none;
 }

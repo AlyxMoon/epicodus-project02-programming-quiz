@@ -8,7 +8,7 @@ const templateQuestionnaire = ({
   const onLastPage = currentPage >= totalPages - 1
 
   const buttonContent = `
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-end gap-2">
       <button 
         class="btn ${onFirstPage ? 'btn-outline-secondary' : 'btn-secondary'}"
         data-change-page
@@ -76,7 +76,7 @@ const templateQuestionBlock = ({
     <div class="input-group question-block">
       <div class="border d-flex flex-column justify-content-stretch">
         <button 
-          class="btn btn-outline-secondary border-top-0 border-start-0 border-end-0 border-bottom rounded-none"
+          class="btn btn-secondary border-top-0 border-start-0 border-end-0 border-bottom rounded-none"
           data-question-sort
           data-direction="up"
           data-index="${order}"
@@ -87,7 +87,7 @@ const templateQuestionBlock = ({
         </button>
     
         <button 
-          class="btn btn-outline-secondary border-top-0 border-start-0 border-end-0 border-bottom-0 rounded-none"
+          class="btn btn-secondary border-top-0 border-start-0 border-end-0 border-bottom-0 rounded-none"
           data-question-sort
           data-direction="down"
           data-index="${order}"
@@ -123,9 +123,9 @@ const templateLanguages = ({
 } = {}) => {
 
   const buttonContent = `
-    <div class="d-flex justify-content-end mb-3">
+    <div class="d-flex justify-content-end my-3">
       <button 
-        class="btn btn-warning"
+        class="btn btn-secondary"
         data-reset-questionnaire
       >
         Reset Questionnaire
@@ -135,7 +135,7 @@ const templateLanguages = ({
 
   return `
     <header class="d-flex justify-content-between align-items-start">
-      <h2>Results</h2>
+      <h2 class="my-3">Results</h2>
 
       ${buttonContent}
     </header>
