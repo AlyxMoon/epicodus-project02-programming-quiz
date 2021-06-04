@@ -28,3 +28,9 @@ This is my second independent project for the Epicodus bootcamp program. The goa
 - `The project should include the following:`
   - `include a minimum of 5 survey questions.`
   - `offer a minimum of 3 different language suggestions.`
+
+##### Further Exploration Objectives
+- `Ask the user for their name and address them directly in all of the responses to them.`
+- `Make questions multiple choice and determine which track is right for a user by identifying the letter that was most frequently selected.`
+- `use fade in/out or slide in/out jQuery effects throughout the project.`
+- `Other enhancements such as more custom CSS, animations, or modals, as desired.`
