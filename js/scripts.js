@@ -37,8 +37,12 @@ const languages = [
   },
 ]
 
+const buildLanguageCards = (selectorContainer = '.languages-container') => {
+  $(selectorContainer).html(languages.map(templateLanguageCard).join(''))
+}
+
 const main = () => {
-  
+  buildLanguageCards()
 }
 
 $(main) // modern replacement for $(document).ready(function () {})
