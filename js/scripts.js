@@ -55,6 +55,39 @@ const deepCopy = (value) => {
   return value
 }
 
+class QuestionnaireManager {
+  constructor ({
+    selectorContainer = '.questionnaire',
+    template = templateQuestionnaire,
+  } = {}) {
+    this.selectorContainer = selectorContainer
+    this.template = template
+    
+    this.pages = []
+    this.activePage = null
+  }
+
+  addPage (pageOptions = {}) {
+    this.pages.push(new QuestionPageManager(pageOptions))
+  }
+
+  showPage (page = 0) {
+    this.activePage = page
+    this.render()
+  }
+
+  render () {
+    $(this.selectorContainer).html(this.template({
+      currentPage: this.activePage,
+      totalPages: this.pages.length,
+    }))
+
+    if (this.activePage !== null) {
+      this.pages[this.activePage].render()
+    }
+  }
+}
+
 class QuestionPageManager {
   constructor ({
     selectorContainer = '.questionnaire-page',
@@ -131,8 +164,13 @@ const buildQuestionnairePage = (selectorContainer = '.questionnaire-page-questio
 
 const main = () => {
   buildLanguageCards()
-  
-  const questionManagerPage1 = new QuestionPageManager({
+
+  const questionnaire = new QuestionnaireManager({
+    selectorContainer: '.questionnaire',
+    template: templateQuestionnaire,
+  })
+
+  questionnaire.addPage({
     title: 'What block of code looks nicest to you?',
     selectorContainer: '.questionnaire-page',
     templateForPage: templateQuestionPage,
@@ -159,7 +197,7 @@ const main = () => {
     ]
   })
 
-  questionManagerPage1.render()
+  questionnaire.showPage()
 }
 
 $(main) // modern replacement for $(document).ready(function () {})

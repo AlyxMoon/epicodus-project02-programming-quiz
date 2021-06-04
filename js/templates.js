@@ -10,6 +10,43 @@ const templateLanguageCard = ({
   </div>
 `
 
+templateQuestionnaire = ({
+  content = '',
+  currentPage = 0,
+  totalPages = 0,
+}) => {
+  const prevButtonDisabled = currentPage === 0
+  const nextButtonDisabled = currentPage >= totalPages - 1
+
+  return `
+    ${content}
+
+    <div class="questionnaire-page"></div>
+
+    <div class="button-grid">
+      <button 
+        class="btn btn-outline-secondary"
+        data-change-page
+        data-direction="prev"
+        ${prevButtonDisabled ? 'disabled' : ''}
+        ${prevButtonDisabled ? 'aria-disabled="true"' : ''}
+      >
+        Previous Page
+      </button>
+
+      <button 
+        class="btn btn-outline-secondary"
+        data-change-page
+        data-direction="next"
+        ${nextButtonDisabled ? 'disabled' : ''}
+        ${nextButtonDisabled ? 'aria-disabled="true"' : ''}
+      >
+        Next Page
+      </button>
+    </div>
+  `
+}
+
 templateQuestionPage = ({
   title = 'Questions',
   content = '',
