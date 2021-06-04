@@ -34,3 +34,7 @@ This is my second independent project for the Epicodus bootcamp program. The goa
 - `Make questions multiple choice and determine which track is right for a user by identifying the letter that was most frequently selected.`
 - `use fade in/out or slide in/out jQuery effects throughout the project.`
 - `Other enhancements such as more custom CSS, animations, or modals, as desired.`
+
+## External Libraries Used
+- Bootstrap v5.0.1
+- jQuery v3.6.0
