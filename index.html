@@ -6,10 +6,15 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <script src="js/jquery.min.js" defer></script>
+
+  <script src="js/utilities.js" defer></script>
   <script src="js/data/templates.js" defer></script>
+  <script src="js/data/languages.js" defer></script>
   <script src="js/data/questions_page_1.js" defer></script>
+  <script src="js/data/questions_page_2.js" defer></script>
   <script src="js/classes/QuestionnaireManager.js" defer></script>
-  <script src="js/classes/QuestionPageManager.js" defer></script>
+  <script src="js/classes/QuestionnairePageManager.js" defer></script>
+  <script src="js/classes/QuestionnaireResultsManager.js" defer></script>
   <script src="js/scripts.js" defer></script>
 
   <meta charset="UTF-8">
@@ -31,12 +36,11 @@
     </p>
 
     <!-- Look in js/templates.js templateQuestionnaire() for child content -->
-    <article class="questionnaire"></article>
+    <section class="questionnaire"></section>
 
 
     <!-- Look in js/templates.js templateLanguageCard() for child content -->
-    <div class="card-group languages-container"></div>
-
+    <section class="questionnaire-results"></section>
   </main>
 </body>
 </html>

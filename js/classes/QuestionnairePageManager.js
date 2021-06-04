@@ -1,28 +1,12 @@
-const deepCopy = (value) => {
-  if (Array.isArray(value)) {
-    return value.map(val => deepCopy(val))
-  }
 
-  if (typeof value === 'object') {
-    let newVal = {}
-
-    for (const [key, val] of Object.entries(value)) {
-      newVal[key] = deepCopy(val)
-    }
-
-    return newVal
-  }
-
-  return value
-}
-
-class QuestionPageManager {
+class QuestionnairePageManager {
   constructor ({
     selectorContainer = '.questionnaire-page',
     title = 'Page',
     templateForPage = () => '',
     templateForQuestion = () => '',
     questions = [],
+    questionType,
   } = {}) {
     this.selectorContainer = selectorContainer
     this.title = title
@@ -30,6 +14,7 @@ class QuestionPageManager {
     this.templateForQuestion = templateForQuestion
 
     this.questions = deepCopy(questions)
+    this.questionType = questionType
   }
 
   moveQuestionUp (index) {
@@ -71,6 +56,7 @@ class QuestionPageManager {
     const questionContent = this.questions.map(question => {
       return this.templateForQuestion({ 
         ...question, 
+        type: this.questionType,
         total: this.questions.length
       })
     }).join('')

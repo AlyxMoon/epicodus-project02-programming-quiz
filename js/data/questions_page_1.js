@@ -20,7 +20,7 @@ class HelloWorld {
 `.trim()
 
 const code_helloWorld_javascript = `
-console.log('Hello World!');
+console.log('Hello World!')
 `.trim()
 
 const code_helloWorld_php = `
