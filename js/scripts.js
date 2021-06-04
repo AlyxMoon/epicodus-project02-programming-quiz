@@ -37,34 +37,38 @@ const languages = [
   },
 ]
 
-class QuestionManagerPage1 {
+const deepCopy = (value) => {
+  if (Array.isArray(value)) {
+    return value.map(val => deepCopy(val))
+  }
+
+  if (typeof value === 'object') {
+    let newVal = {}
+
+    for (const [key, val] of Object.entries(value)) {
+      newVal[key] = deepCopy(val)
+    }
+
+    return newVal
+  }
+
+  return value
+}
+
+class QuestionPageManager {
   constructor ({
-    selectorContainer = '.questionnaire-page-questions',
-    template = templateQuestionCodeBlock,
+    selectorContainer = '.questionnaire-page',
+    title = 'Page',
+    templateForPage = () => '',
+    templateForQuestion = () => '',
+    questions = [],
   } = {}) {
     this.selectorContainer = selectorContainer
-    this.template = template
+    this.title = title
+    this.templateForPage = templateForPage
+    this.templateForQuestion = templateForQuestion
 
-    this.questions = [
-      {
-        order: 0,
-        text: '' +
-          'let test = 4\n' +
-          'console.log(test)', 
-      },
-      {
-        order: 1,
-        text: '' +
-          'let test = 42\n' +
-          'console.log(test)', 
-      },
-      {
-        order: 2,
-        text: '' +
-          'let test = 422\n' +
-          'console.log(test)', 
-      }
-    ]
+    this.questions = deepCopy(questions)
   }
 
   moveQuestionUp (index) {
@@ -100,9 +104,19 @@ class QuestionManagerPage1 {
   }
 
   render () {
-    $(this.selectorContainer).html(this.questions.map(question => {
-      return this.template({ ...question, total: this.questions.length })
-    }).join(''))
+    const questionContent = this.questions.map(question => {
+      return this.templateForQuestion({ 
+        ...question, 
+        total: this.questions.length
+      })
+    }).join('')
+
+    const pageContent = this.templateForPage({
+      title: this.title,
+      content: questionContent,
+    })
+
+    $(this.selectorContainer).html(pageContent)
     this.addEventListeners()
   }
 }
@@ -118,7 +132,33 @@ const buildQuestionnairePage = (selectorContainer = '.questionnaire-page-questio
 const main = () => {
   buildLanguageCards()
   
-  const questionManagerPage1 = new QuestionManagerPage1()
+  const questionManagerPage1 = new QuestionPageManager({
+    title: 'What block of code looks nicest to you?',
+    selectorContainer: '.questionnaire-page',
+    templateForPage: templateQuestionPage,
+    templateForQuestion: templateQuestionCodeBlock,
+    questions: [
+      {
+        order: 0,
+        text: '' +
+          'let test = 4\n' +
+          'console.log(test)', 
+      },
+      {
+        order: 1,
+        text: '' +
+          'let test = 42\n' +
+          'console.log(test)', 
+      },
+      {
+        order: 2,
+        text: '' +
+          'let test = 422\n' +
+          'console.log(test)', 
+      }
+    ]
+  })
+
   questionManagerPage1.render()
 }
 
