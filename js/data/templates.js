@@ -134,7 +134,13 @@ const templateLanguages = ({
   `
 
   return `
-    ${buttonContent}
+    <header class="d-flex justify-content-between align-items-start">
+      <h2>Results</h2>
+
+      ${buttonContent}
+    </header>
+
+    
     
     <div class="row row-cols-1 row-cols-md-3 g-4">
       ${languages.map(templateLanguageCard).join('')}
