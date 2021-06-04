@@ -12,6 +12,21 @@ This is my second independent project for the Epicodus bootcamp program. The goa
 3. No special tooling is required to preview the site when developing. You can either open the index.html file directly, or use any tool to start a develop server which serves the index.html for
   - for example, in VScode, open the command palette and search for `live server: open with live server`
 
+## Explanation of Code
+
+In this project we were supposed to use jQuery. However, I am experienced with frameworks such as React, so as a challenge I tried to write code that could function somewhat similarly. By that, I mean having 'templates' defined which would be dynamically placed into the document via script, and those templates would be controlled by their own classes.
+
+The templates can be found in `js/data/templates.js`. These are functions which return a string, and they utilize [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to embed variables into the strings.
+
+These template functions are passed to classes which can be thought of as components. They store information and then rebuild the content by passing the updated information to the template function. These classes can be found in `js/classes/..`.
+
+For the questionnaire data itself, those are stored per page in `js/data/..` in the files such as `languages.js` and `questions_page_1.js`.  
+The data for questions contains a list of languages and assigns a point to each language. I was originally going to add points to both a language and to a certain 'feature' (such as not requiring semicolons), but I opted to keep it simple and only add points to a language specifically.
+
+The `js/utilities.js` only ended up containing a function called `deepCopy`, which returns an entirely fresh instance of whatever data is passed in to it. This is to avoid accidentally updating the source variable when passing questions to the manager classes. For an example the issue this seeks to avoid, [here's a random blog post](http://dyn-web.com/javascript/arrays/value-vs-reference.php) I found detailing the issue.
+
+After that, it all comes together in the `js/scripts.js` which can be considered the main file. On page load, this creates an instance of the questionnaire manager and questionnaire results page manager. Then it uses the questionnaire manager to create each page.
+
 ## Objectives
 - `Commits are made regularly with clear messages that finish the phrase 'It will...`
 - `The project repo contains a README that includes: author name, project name, description, setup instructions, link to GitHub Pages, and copyright info.`

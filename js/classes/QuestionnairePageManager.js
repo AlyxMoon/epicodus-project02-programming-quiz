@@ -47,8 +47,27 @@ class QuestionnairePageManager {
       const clickedIndex = parseInt($(event.currentTarget).data('index'))
       const direction = $(event.currentTarget).data('direction')
 
-      if (direction === 'up') this.moveQuestionUp(clickedIndex)
-      if (direction === 'down') this.moveQuestionDown(clickedIndex)
+      if (direction === 'up') {
+        const prevBlock = $(`.question-block[data-index=${clickedIndex - 1}]`)
+        const currentBlock = $(`.question-block[data-index=${clickedIndex}]`)
+
+        const prevBlockOffset = prevBlock.position().top
+        const currentBlockOffset = currentBlock.position().top
+
+        const currentBlockOffsetNew = currentBlockOffset - prevBlockOffset - 10
+        const prevBlockOffsetNew = currentBlockOffsetNew - currentBlock.height() + 30
+
+        currentBlock.css('top', `-${currentBlockOffsetNew}px`)
+
+        prevBlock.css('top', `${prevBlockOffsetNew}px`)
+        $(`.questionnaire-page-questions h3[data-index=${clickedIndex}]`)
+          .css('top', `-${currentBlockOffsetNew - currentBlock.height()}px`)
+      }
+
+      window.setTimeout(() => {
+        if (direction === 'up') this.moveQuestionUp(clickedIndex)
+        if (direction === 'down') this.moveQuestionDown(clickedIndex)
+      }, 1000)
     })
   }
 
