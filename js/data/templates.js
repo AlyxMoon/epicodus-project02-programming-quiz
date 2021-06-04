@@ -7,11 +7,7 @@ const templateQuestionnaire = ({
   const onFirstPage = currentPage === 0
   const onLastPage = currentPage >= totalPages - 1
 
-  return `
-    ${content}
-
-    <div class="questionnaire-page"></div>
-
+  const buttonContent = `
     <div class="d-flex justify-content-between">
       <button 
         class="btn ${onFirstPage ? 'btn-outline-secondary' : 'btn-secondary'}"
@@ -32,6 +28,16 @@ const templateQuestionnaire = ({
       </button>
     </div>
   `
+
+  return `
+    ${content}
+
+    ${buttonContent}
+
+    <div class="questionnaire-page"></div>
+
+    ${buttonContent}
+  `.trim()
 }
 
 const templateQuestionPage = ({
@@ -114,26 +120,26 @@ const templateLanguageCard = ({
 
 const templateLanguages = ({ 
   languages = [],
-} = {}) => `
-<div class="d-flex justify-content-end mb-3">
-  <button 
-    class="btn btn-warning"
-    data-reset-questionnaire
-  >
-    Reset Questionnaire
-  </button>
-</div>
+} = {}) => {
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  ${languages.map(templateLanguageCard).join('')}
-</div>
+  const buttonContent = `
+    <div class="d-flex justify-content-end mb-3">
+      <button 
+        class="btn btn-warning"
+        data-reset-questionnaire
+      >
+        Reset Questionnaire
+      </button>
+    </div>
+  `
 
-<div class="d-flex justify-content-end mt-3">
-  <button 
-    class="btn btn-warning"
-    data-reset-questionnaire
-  >
-    Reset Questionnaire
-  </button>
-</div>
-`.trim()
+  return `
+    ${buttonContent}
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      ${languages.map(templateLanguageCard).join('')}
+    </div>
+    
+    ${buttonContent}
+  `.trim()
+}
