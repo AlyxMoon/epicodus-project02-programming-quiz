@@ -2,10 +2,6 @@
   display: none;
 }
 
-code {
-  white-space: pre-line;
-}
-
 .rounded-none {
   border-radius: 0px !important;
 }
@@ -16,4 +12,34 @@ button {
 
 .input-group {
   margin: 0.5rem 0;
+}
+
+.form-control {
+  padding: 0;
+}
+
+code {
+  display: block;
+
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem 1rem;
+
+  background-color: #222;
+  color: rgb(110, 200, 100);
+
+  font-size: 1rem;
+
+  overflow-x: auto;
+  white-space: pre;
+}
+
+code::selection {
+  background-color: navy;
+}
+
+.questionnaire-page-questions {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 10px 20px;
 }

@@ -53,7 +53,7 @@ templateQuestionPage = ({
 } = {}) => `
 <h2>${title}</h2>
 
-<section class="questionnaire-page-questions d-flex flex-column">
+<section class="questionnaire-page-questions">
   ${content}
 </section>
 `
@@ -67,6 +67,8 @@ templateQuestionCodeBlock = ({
   const bottomButtonDisabled = order >= total - 1
 
   return `
+    <h3 class="my-3">${order + 1}.</h3>
+
     <div class="input-group question-codeblock">
       <div class="border d-flex flex-column justify-content-stretch">
         <button 
@@ -91,7 +93,9 @@ templateQuestionCodeBlock = ({
           <i class="bi bi-arrow-down"></i>
         </button>
       </div>
-      <code class="form-control">${text}</code>
+      <div class="form-control">
+        <code>${text}</code>
+      </div>
     </div>
   `
 }

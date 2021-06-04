@@ -54,26 +54,7 @@ const main = () => {
     selectorContainer: '.questionnaire-page',
     templateForPage: templateQuestionPage,
     templateForQuestion: templateQuestionCodeBlock,
-    questions: [
-      {
-        order: 0,
-        text: '' +
-          'let test = 4\n' +
-          'console.log(test)', 
-      },
-      {
-        order: 1,
-        text: '' +
-          'let test = 42\n' +
-          'console.log(test)', 
-      },
-      {
-        order: 2,
-        text: '' +
-          'let test = 422\n' +
-          'console.log(test)', 
-      }
-    ]
+    questions: questionsPage1,
   })
 
   questionnaire.addPage({
