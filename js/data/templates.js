@@ -7,14 +7,10 @@ const templateQuestionnaire = ({
   const onFirstPage = currentPage === 0
   const onLastPage = currentPage >= totalPages - 1
 
-  return `
-    ${content}
-
-    <div class="questionnaire-page"></div>
-
-    <div class="button-grid">
+  const buttonContent = `
+    <div class="d-flex justify-content-between">
       <button 
-        class="btn btn-outline-secondary"
+        class="btn ${onFirstPage ? 'btn-outline-secondary' : 'btn-secondary'}"
         data-change-page
         data-direction="prev"
         ${onFirstPage ? 'disabled' : ''}
@@ -24,7 +20,7 @@ const templateQuestionnaire = ({
       </button>
 
       <button 
-        class="btn btn-outline-secondary"
+        class="btn ${onLastPage ? 'btn-success' : 'btn-primary'}"
         data-change-page
         data-direction="next"
       >
@@ -32,6 +28,16 @@ const templateQuestionnaire = ({
       </button>
     </div>
   `
+
+  return `
+    ${content}
+
+    ${buttonContent}
+
+    <div class="questionnaire-page"></div>
+
+    ${buttonContent}
+  `.trim()
 }
 
 const templateQuestionPage = ({
@@ -102,18 +108,44 @@ const templateLanguageCard = ({
   title = 'Programming Language',
   description = 'Description of the programming language',
 } = {}) => `
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">${title}</h5>
-    <p>${description}</p>
+<div class="col">
+  <div class="card h-100">
+    <div class="card-body">
+      <h5 class="card-title">${title}</h5>
+      <p>${description}</p>
+    </div>
   </div>
 </div>
 `.trim()
 
 const templateLanguages = ({ 
   languages = [],
-} = {}) => `
-<div class="card-group">
-  ${languages.map(templateLanguageCard).join('')}
-</div>
-`.trim()
+} = {}) => {
+
+  const buttonContent = `
+    <div class="d-flex justify-content-end mb-3">
+      <button 
+        class="btn btn-warning"
+        data-reset-questionnaire
+      >
+        Reset Questionnaire
+      </button>
+    </div>
+  `
+
+  return `
+    <header class="d-flex justify-content-between align-items-start">
+      <h2>Results</h2>
+
+      ${buttonContent}
+    </header>
+
+    
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      ${languages.map(templateLanguageCard).join('')}
+    </div>
+    
+    ${buttonContent}
+  `.trim()
+}

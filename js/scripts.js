@@ -9,10 +9,6 @@ const main = () => {
   const questionnaire = new QuestionnaireManager({
     selectorContainer: '.questionnaire',
     template: templateQuestionnaire,
-    callbackFinishedQuestionnaire: (pointsPerLanguage) => {
-      questionnaireResults.determineOrderOfLanguages(pointsPerLanguage)
-      questionnaireResults.render()
-    },
   })
 
   questionnaire.addPage({
@@ -33,7 +29,44 @@ const main = () => {
     questionType: 'text',
   })
 
-  questionnaire.showPage()
+  questionnaire.addPage({
+    title: 'What are your thoughts on semicolons (;)?',
+    selectorContainer: '.questionnaire-page',
+    templateForPage: templateQuestionPage,
+    templateForQuestion: templateQuestionBlock,
+    questions: questionsPage3, // defined in js/data/questions_page_3.js
+    questionType: 'text',
+  })
+
+  questionnaire.addPage({
+    title: 'Do you have any interest in making games?',
+    selectorContainer: '.questionnaire-page',
+    templateForPage: templateQuestionPage,
+    templateForQuestion: templateQuestionBlock,
+    questions: questionsPage4, // defined in js/data/questions_page_4.js
+    questionType: 'text',
+  })
+
+  questionnaire.addPage({
+    title: 'Do you have any interest in working with data?',
+    selectorContainer: '.questionnaire-page',
+    templateForPage: templateQuestionPage,
+    templateForQuestion: templateQuestionBlock,
+    questions: questionsPage5, // defined in js/data/questions_page_5.js
+    questionType: 'text',
+  })
+
+  questionnaire.showPage(0)
+
+  questionnaire.callbackFinishedQuestionnaire = (pointsPerLanguage) => {
+    questionnaireResults.determineOrderOfLanguages(pointsPerLanguage)
+    questionnaireResults.render()
+  },
+
+  questionnaireResults.callbackResetQuestionnaire = () => {
+    questionnaireResults.clear()
+    questionnaire.showPage(0)
+  }
 }
 
 $(main) // modern replacement for $(document).ready(function () {})

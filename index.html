@@ -12,6 +12,9 @@
   <script src="js/data/languages.js" defer></script>
   <script src="js/data/questions_page_1.js" defer></script>
   <script src="js/data/questions_page_2.js" defer></script>
+  <script src="js/data/questions_page_3.js" defer></script>
+  <script src="js/data/questions_page_4.js" defer></script>
+  <script src="js/data/questions_page_5.js" defer></script>
   <script src="js/classes/QuestionnaireManager.js" defer></script>
   <script src="js/classes/QuestionnairePageManager.js" defer></script>
   <script src="js/classes/QuestionnaireResultsManager.js" defer></script>
@@ -24,9 +27,10 @@
 
   <title>Programming Quiz</title>
 </head>
-<body class="my-5">
-  <main class="container">
+<body class="mt-3 mb-5">
+  <header class="container text-center">
     <h1>Find Your Language!</h1>
+  
     <p>
       Interesting in coding but not sure what language to pick? Understandable, there are so many options! Well take this quiz and you may find suggestions to help.
     </p>
@@ -34,6 +38,11 @@
     <p>
       For each set of questions, please use the arrows next to a response to sort the responses. Place the response that best fits you first, and the response that fits you the least last.
     </p>
+  </header>
+
+  <hr />
+
+  <main class="container">
 
     <!-- Look in js/templates.js templateQuestionnaire() for child content -->
     <section class="questionnaire"></section>

@@ -3,11 +3,15 @@ class QuestionnaireResultsManager {
     selectorContainer = '',
     template = () => '',
     languages = [],
+
+    callbackResetQuestionnaire = () => {},
   } = {}) {
     this.selectorContainer = selectorContainer
     this.template = template
 
     this.languages = deepCopy(languages)
+
+    this.callbackResetQuestionnaire = callbackResetQuestionnaire
   }
 
   determineOrderOfLanguages (pointsPerLanguage = {}) {
@@ -17,7 +21,10 @@ class QuestionnaireResultsManager {
   }
 
   addEventListeners () {
-
+    $('button[data-reset-questionnaire]', this.selectorContainer)
+      .on('click', () => {
+        this.callbackResetQuestionnaire()
+      })
   }
 
   render () {      
@@ -25,6 +32,10 @@ class QuestionnaireResultsManager {
       languages: this.languages,
     }))
 
-    this.addEventListeners
+    this.addEventListeners()
+  }
+
+  clear () {
+    $(this.selectorContainer).html('')
   }
 }
