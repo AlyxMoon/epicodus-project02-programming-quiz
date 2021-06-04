@@ -1,22 +1,11 @@
-const templateLanguageCard = ({ 
-  title = 'Programming Language',
-  description = 'Description of the programming language',
-} = {}) => `
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">${title}</h5>
-      <p>${description}</p>
-    </div>
-  </div>
-`
 
-templateQuestionnaire = ({
+const templateQuestionnaire = ({
   content = '',
   currentPage = 0,
   totalPages = 0,
 }) => {
-  const prevButtonDisabled = currentPage === 0
-  const nextButtonDisabled = currentPage >= totalPages - 1
+  const onFirstPage = currentPage === 0
+  const onLastPage = currentPage >= totalPages - 1
 
   return `
     ${content}
@@ -28,8 +17,8 @@ templateQuestionnaire = ({
         class="btn btn-outline-secondary"
         data-change-page
         data-direction="prev"
-        ${prevButtonDisabled ? 'disabled' : ''}
-        ${prevButtonDisabled ? 'aria-disabled="true"' : ''}
+        ${onFirstPage ? 'disabled' : ''}
+        ${onFirstPage ? 'aria-disabled="true"' : ''}
       >
         Previous Page
       </button>
@@ -38,16 +27,14 @@ templateQuestionnaire = ({
         class="btn btn-outline-secondary"
         data-change-page
         data-direction="next"
-        ${nextButtonDisabled ? 'disabled' : ''}
-        ${nextButtonDisabled ? 'aria-disabled="true"' : ''}
       >
-        Next Page
+        ${onLastPage ? 'Finish!' : 'Next Page' }
       </button>
     </div>
   `
 }
 
-templateQuestionPage = ({
+const templateQuestionPage = ({
   title = 'Questions',
   content = '',
 } = {}) => `
@@ -58,7 +45,7 @@ templateQuestionPage = ({
 </section>
 `
 
-templateQuestionCodeBlock = ({
+const templateQuestionCodeBlock = ({
   text = '',
   order = 0,
   total = 0,
@@ -99,3 +86,23 @@ templateQuestionCodeBlock = ({
     </div>
   `
 }
+
+const templateLanguageCard = ({
+  title = 'Programming Language',
+  description = 'Description of the programming language',
+} = {}) => `
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">${title}</h5>
+    <p>${description}</p>
+  </div>
+</div>
+`
+
+const templateLanguages = ({ 
+  languages = [],
+} = {}) => `
+<div class="card-group">
+  ${languages.map(templateLanguageCard)}
+</div>
+`

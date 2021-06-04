@@ -1,8 +1,10 @@
 class QuestionnaireManager {
   constructor ({
+    callbackFinishedQuestionnaire = () => {},
     selectorContainer = '',
     template = () => '',
   } = {}) {
+    this.callbackFinishedQuestionnaire = callbackFinishedQuestionnaire
     this.selectorContainer = selectorContainer
     this.template = template
     
@@ -11,12 +13,29 @@ class QuestionnaireManager {
   }
 
   addPage (pageOptions = {}) {
-    this.pages.push(new QuestionPageManager(pageOptions))
+    this.pages.push(new QuestionnairePageManager(pageOptions))
   }
 
   showPage (page = 0) {
     this.activePage = page
+
+    if (this.activePage >= this.pages.length) {
+      this.callbackFinishedQuestionnaire(this.calculateResults())
+      this.activePage = null
+    }
+
     this.render()
+  }
+
+  calculateResults () {
+    return {
+      csharp: 10,
+      java: 5,
+      javascript: 23,
+      php: 1,
+      python: 0,
+      swift: 0,
+    }
   }
 
   addEventListeners () {
@@ -32,14 +51,17 @@ class QuestionnaireManager {
   }
 
   render () {
+    if (this.activePage === null) {
+      $(this.selectorContainer).html('')
+      return
+    }
+    
     $(this.selectorContainer).html(this.template({
       currentPage: this.activePage,
       totalPages: this.pages.length,
     }))
 
-    if (this.activePage !== null) {
-      this.pages[this.activePage].render()
-    }
+    this.pages[this.activePage].render()
 
     this.addEventListeners()
   }
