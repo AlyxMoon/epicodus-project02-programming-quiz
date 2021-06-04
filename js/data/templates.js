@@ -72,9 +72,17 @@ const templateQuestionBlock = ({
   }
 
   return `
-    <h3 class="my-3">${order + 1}.</h3>
+    <h3 
+      class="my-3"
+      style="order: ${order * 2 + 1};"
+      data-index="${order}"
+    >${order + 1}.</h3>
 
-    <div class="input-group question-block">
+    <div 
+      class="input-group question-block"
+      style="order: ${order * 2 + 2};"
+      data-index="${order}"
+    >
       <div class="border d-flex flex-column justify-content-stretch">
         <button 
           class="btn btn-secondary border-top-0 border-start-0 border-end-0 border-bottom rounded-none"

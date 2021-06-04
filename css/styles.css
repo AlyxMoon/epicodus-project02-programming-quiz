@@ -41,7 +41,8 @@ button {
 }
 
 .btn-primary:focus,
-.btn-primary:hover {
+.btn-primary:hover,
+.question-block button:hover {
   background-color: var(--color-teal-alt);
   border-color: var(--color-teal-alt);
   box-shadow: none;
@@ -68,6 +69,14 @@ button {
 
 .form-control {
   padding: 0;
+}
+
+.questionnaire-page-questions h3,
+.questionnaire-page-questions .question-block {
+  position: relative;
+  top: 0;
+
+  transition: top 1s;
 }
 
 .question-block .form-control code,
