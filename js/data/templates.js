@@ -44,9 +44,10 @@ const templateQuestionPage = ({
   title = 'Questions',
   content = '',
 } = {}) => `
-<h2>${title}</h2>
 
 <section class="questionnaire-page-questions">
+  <div></div>
+  <header><h2>${title}</h2></header>
   ${content}
 </section>
 `
