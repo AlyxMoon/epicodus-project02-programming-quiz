@@ -6,6 +6,7 @@ class QuestionnairePageManager {
     templateForPage = () => '',
     templateForQuestion = () => '',
     questions = [],
+    questionType,
   } = {}) {
     this.selectorContainer = selectorContainer
     this.title = title
@@ -13,6 +14,7 @@ class QuestionnairePageManager {
     this.templateForQuestion = templateForQuestion
 
     this.questions = deepCopy(questions)
+    this.questionType = questionType
   }
 
   moveQuestionUp (index) {
@@ -54,6 +56,7 @@ class QuestionnairePageManager {
     const questionContent = this.questions.map(question => {
       return this.templateForQuestion({ 
         ...question, 
+        type: this.questionType,
         total: this.questions.length
       })
     }).join('')

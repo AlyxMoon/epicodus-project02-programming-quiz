@@ -45,18 +45,29 @@ const templateQuestionPage = ({
 </section>
 `
 
-const templateQuestionCodeBlock = ({
+const templateQuestionBlock = ({
   text = '',
   order = 0,
   total = 0,
+  type = 'code',
 }) => {
   const topButtonDisabled = order === 0 
   const bottomButtonDisabled = order >= total - 1
 
+  let contentBlock
+
+  if (type === 'code') {
+    contentBlock = `<code>${text}</code>`
+  }
+
+  if (type === 'text') {
+    contentBlock = `<div class="align-items-center">${text}</div>`
+  }
+
   return `
     <h3 class="my-3">${order + 1}.</h3>
 
-    <div class="input-group question-codeblock">
+    <div class="input-group question-block">
       <div class="border d-flex flex-column justify-content-stretch">
         <button 
           class="btn btn-outline-secondary border-top-0 border-start-0 border-end-0 border-bottom rounded-none"
@@ -81,7 +92,7 @@ const templateQuestionCodeBlock = ({
         </button>
       </div>
       <div class="form-control">
-        <code>${text}</code>
+        ${contentBlock}
       </div>
     </div>
   `

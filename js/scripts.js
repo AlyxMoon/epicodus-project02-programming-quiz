@@ -19,35 +19,18 @@ const main = () => {
     title: 'What block of code looks nicest to you?',
     selectorContainer: '.questionnaire-page',
     templateForPage: templateQuestionPage,
-    templateForQuestion: templateQuestionCodeBlock,
+    templateForQuestion: templateQuestionBlock,
     questions: questionsPage1, // defined in js/data/questions_page_1.js
+    questionType: 'code',
   })
 
   questionnaire.addPage({
-    title: 'What block of code looks nicest to you? PART TWO',
+    title: 'What kind of environments/platforms do you want to work with?',
     selectorContainer: '.questionnaire-page',
     templateForPage: templateQuestionPage,
-    templateForQuestion: templateQuestionCodeBlock,
-    questions: [
-      {
-        order: 0,
-        text: '' +
-          'let test = 50\n' +
-          'console.log(test)', 
-      },
-      {
-        order: 1,
-        text: '' +
-          'let test = 51231\n' +
-          'console.log(test)', 
-      },
-      {
-        order: 2,
-        text: '' +
-          'let test = 551231\n' +
-          'console.log(test)', 
-      }
-    ]
+    templateForQuestion: templateQuestionBlock,
+    questions: questionsPage2, // defined in js/data/questions_page_2.js
+    questionType: 'text',
   })
 
   questionnaire.showPage()
