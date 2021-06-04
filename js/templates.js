@@ -10,6 +10,54 @@ const templateLanguageCard = ({
   </div>
 `
 
+templateQuestionnaire = ({
+  content = '',
+  currentPage = 0,
+  totalPages = 0,
+}) => {
+  const prevButtonDisabled = currentPage === 0
+  const nextButtonDisabled = currentPage >= totalPages - 1
+
+  return `
+    ${content}
+
+    <div class="questionnaire-page"></div>
+
+    <div class="button-grid">
+      <button 
+        class="btn btn-outline-secondary"
+        data-change-page
+        data-direction="prev"
+        ${prevButtonDisabled ? 'disabled' : ''}
+        ${prevButtonDisabled ? 'aria-disabled="true"' : ''}
+      >
+        Previous Page
+      </button>
+
+      <button 
+        class="btn btn-outline-secondary"
+        data-change-page
+        data-direction="next"
+        ${nextButtonDisabled ? 'disabled' : ''}
+        ${nextButtonDisabled ? 'aria-disabled="true"' : ''}
+      >
+        Next Page
+      </button>
+    </div>
+  `
+}
+
+templateQuestionPage = ({
+  title = 'Questions',
+  content = '',
+} = {}) => `
+<h2>${title}</h2>
+
+<section class="questionnaire-page-questions d-flex flex-column">
+  ${content}
+</section>
+`
+
 templateQuestionCodeBlock = ({
   text = '',
   order = 0,
@@ -23,6 +71,7 @@ templateQuestionCodeBlock = ({
       <div class="border d-flex flex-column justify-content-stretch">
         <button 
           class="btn btn-outline-secondary border-top-0 border-start-0 border-end-0 border-bottom rounded-none"
+          data-question-sort
           data-direction="up"
           data-index="${order}"
           ${topButtonDisabled ? 'disabled' : ''}
@@ -33,6 +82,7 @@ templateQuestionCodeBlock = ({
     
         <button 
           class="btn btn-outline-secondary border-top-0 border-start-0 border-end-0 border-bottom-0 rounded-none"
+          data-question-sort
           data-direction="down"
           data-index="${order}"
           ${bottomButtonDisabled ? 'disabled' : ''}

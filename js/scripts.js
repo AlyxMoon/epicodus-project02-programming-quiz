@@ -37,15 +37,24 @@ const languages = [
   },
 ]
 
-class QuestionManagerPage1 {
-  constructor ({
-    selectorContainer = '.questionnaire-page-questions',
-    template = templateQuestionCodeBlock,
-  } = {}) {
-    this.selectorContainer = selectorContainer
-    this.template = template
+const buildLanguageCards = (selectorContainer = '.languages-container') => {
+  $(selectorContainer).html(languages.map(templateLanguageCard).join(''))
+}
 
-    this.questions = [
+const main = () => {
+  buildLanguageCards()
+
+  const questionnaire = new QuestionnaireManager({
+    selectorContainer: '.questionnaire',
+    template: templateQuestionnaire,
+  })
+
+  questionnaire.addPage({
+    title: 'What block of code looks nicest to you?',
+    selectorContainer: '.questionnaire-page',
+    templateForPage: templateQuestionPage,
+    templateForQuestion: templateQuestionCodeBlock,
+    questions: [
       {
         order: 0,
         text: '' +
@@ -65,61 +74,36 @@ class QuestionManagerPage1 {
           'console.log(test)', 
       }
     ]
-  }
+  })
 
-  moveQuestionUp (index) {
-    this.questions[index].order--
-    this.questions[index - 1].order++
+  questionnaire.addPage({
+    title: 'What block of code looks nicest to you? PART TWO',
+    selectorContainer: '.questionnaire-page',
+    templateForPage: templateQuestionPage,
+    templateForQuestion: templateQuestionCodeBlock,
+    questions: [
+      {
+        order: 0,
+        text: '' +
+          'let test = 50\n' +
+          'console.log(test)', 
+      },
+      {
+        order: 1,
+        text: '' +
+          'let test = 51231\n' +
+          'console.log(test)', 
+      },
+      {
+        order: 2,
+        text: '' +
+          'let test = 551231\n' +
+          'console.log(test)', 
+      }
+    ]
+  })
 
-    this.sortQuestions()
-    this.render()
-  }
-
-  moveQuestionDown (index) {
-    this.questions[index].order++
-    this.questions[index + 1].order--
-
-    this.sortQuestions()
-    this.render()
-  }
-
-  sortQuestions () {
-    this.questions.sort(({ order: orderA }, { order: orderB }) => {
-      return orderA - orderB
-    })
-  }
-
-  addEventListeners () {
-    $('button',  this.selectorContainer).on('click', (event) => {
-      const clickedIndex = parseInt($(event.currentTarget).data('index'))
-      const direction = $(event.currentTarget).data('direction')
-
-      if (direction === 'up') this.moveQuestionUp(clickedIndex)
-      if (direction === 'down') this.moveQuestionDown(clickedIndex)
-    })
-  }
-
-  render () {
-    $(this.selectorContainer).html(this.questions.map(question => {
-      return this.template({ ...question, total: this.questions.length })
-    }).join(''))
-    this.addEventListeners()
-  }
-}
-
-const buildLanguageCards = (selectorContainer = '.languages-container') => {
-  $(selectorContainer).html(languages.map(templateLanguageCard).join(''))
-}
-
-const buildQuestionnairePage = (selectorContainer = '.questionnaire-page-questions') => {
-  $(selectorContainer).html([1,2,3].map(templateQuestionCodeBlock).join(''))
-}
-
-const main = () => {
-  buildLanguageCards()
-  
-  const questionManagerPage1 = new QuestionManagerPage1()
-  questionManagerPage1.render()
+  questionnaire.showPage()
 }
 
 $(main) // modern replacement for $(document).ready(function () {})

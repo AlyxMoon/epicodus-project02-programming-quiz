@@ -7,6 +7,8 @@
 
   <script src="js/jquery.min.js" defer></script>
   <script src="js/templates.js" defer></script>
+  <script src="js/classes/QuestionnaireManager.js" defer></script>
+  <script src="js/classes/QuestionPageManager.js" defer></script>
   <script src="js/scripts.js" defer></script>
 
   <meta charset="UTF-8">
@@ -23,13 +25,8 @@
       Interesting in coding but not sure what language to pick? Understandable, there are so many options! Well take this quiz and you may find suggestions to help.
     </p>
 
-    <article class="questionnaire">
-      <div class="questionnaire-page">
-        <h2>First Set of Questions</h2>
-
-        <section class="questionnaire-page-questions d-flex flex-column"></section>
-      </div>
-    </article>
+    <!-- Look in js/templates.js templateQuestionnaire() for child content -->
+    <article class="questionnaire"></article>
 
 
     <!-- Look in js/templates.js templateLanguageCard() for child content -->
