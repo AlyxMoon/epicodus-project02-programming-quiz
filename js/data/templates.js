@@ -12,9 +12,9 @@ const templateQuestionnaire = ({
 
     <div class="questionnaire-page"></div>
 
-    <div class="button-grid">
+    <div class="d-flex justify-content-between">
       <button 
-        class="btn btn-outline-secondary"
+        class="btn ${onFirstPage ? 'btn-outline-secondary' : 'btn-secondary'}"
         data-change-page
         data-direction="prev"
         ${onFirstPage ? 'disabled' : ''}
@@ -24,7 +24,7 @@ const templateQuestionnaire = ({
       </button>
 
       <button 
-        class="btn btn-outline-secondary"
+        class="btn ${onLastPage ? 'btn-success' : 'btn-primary'}"
         data-change-page
         data-direction="next"
       >
@@ -102,10 +102,12 @@ const templateLanguageCard = ({
   title = 'Programming Language',
   description = 'Description of the programming language',
 } = {}) => `
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">${title}</h5>
-    <p>${description}</p>
+<div class="col">
+  <div class="card h-100">
+    <div class="card-body">
+      <h5 class="card-title">${title}</h5>
+      <p>${description}</p>
+    </div>
   </div>
 </div>
 `.trim()
@@ -113,7 +115,25 @@ const templateLanguageCard = ({
 const templateLanguages = ({ 
   languages = [],
 } = {}) => `
-<div class="card-group">
+<div class="d-flex justify-content-end mb-3">
+  <button 
+    class="btn btn-warning"
+    data-reset-questionnaire
+  >
+    Reset Questionnaire
+  </button>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
   ${languages.map(templateLanguageCard).join('')}
+</div>
+
+<div class="d-flex justify-content-end mt-3">
+  <button 
+    class="btn btn-warning"
+    data-reset-questionnaire
+  >
+    Reset Questionnaire
+  </button>
 </div>
 `.trim()

@@ -33,7 +33,12 @@ const main = () => {
     questionType: 'text',
   })
 
-  questionnaire.showPage()
+  questionnaire.showPage(0)
+
+  questionnaireResults.callbackResetQuestionnaire = () => {
+    questionnaireResults.clear()
+    questionnaire.showPage(0)
+  }
 }
 
 $(main) // modern replacement for $(document).ready(function () {})
