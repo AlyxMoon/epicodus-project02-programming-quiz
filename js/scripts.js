@@ -37,8 +37,89 @@ const languages = [
   },
 ]
 
+class QuestionManagerPage1 {
+  constructor ({
+    selectorContainer = '.questionnaire-page-questions',
+    template = templateQuestionCodeBlock,
+  } = {}) {
+    this.selectorContainer = selectorContainer
+    this.template = template
+
+    this.questions = [
+      {
+        order: 0,
+        text: '' +
+          'let test = 4\n' +
+          'console.log(test)', 
+      },
+      {
+        order: 1,
+        text: '' +
+          'let test = 42\n' +
+          'console.log(test)', 
+      },
+      {
+        order: 2,
+        text: '' +
+          'let test = 422\n' +
+          'console.log(test)', 
+      }
+    ]
+  }
+
+  moveQuestionUp (index) {
+    this.questions[index].order--
+    this.questions[index - 1].order++
+
+    this.sortQuestions()
+    this.render()
+  }
+
+  moveQuestionDown (index) {
+    this.questions[index].order++
+    this.questions[index + 1].order--
+
+    this.sortQuestions()
+    this.render()
+  }
+
+  sortQuestions () {
+    this.questions.sort(({ order: orderA }, { order: orderB }) => {
+      return orderA - orderB
+    })
+  }
+
+  addEventListeners () {
+    $('button',  this.selectorContainer).on('click', (event) => {
+      const clickedIndex = parseInt($(event.currentTarget).data('index'))
+      const direction = $(event.currentTarget).data('direction')
+
+      if (direction === 'up') this.moveQuestionUp(clickedIndex)
+      if (direction === 'down') this.moveQuestionDown(clickedIndex)
+    })
+  }
+
+  render () {
+    $(this.selectorContainer).html(this.questions.map(question => {
+      return this.template({ ...question, total: this.questions.length })
+    }).join(''))
+    this.addEventListeners()
+  }
+}
+
+const buildLanguageCards = (selectorContainer = '.languages-container') => {
+  $(selectorContainer).html(languages.map(templateLanguageCard).join(''))
+}
+
+const buildQuestionnairePage = (selectorContainer = '.questionnaire-page-questions') => {
+  $(selectorContainer).html([1,2,3].map(templateQuestionCodeBlock).join(''))
+}
+
 const main = () => {
+  buildLanguageCards()
   
+  const questionManagerPage1 = new QuestionManagerPage1()
+  questionManagerPage1.render()
 }
 
 $(main) // modern replacement for $(document).ready(function () {})
