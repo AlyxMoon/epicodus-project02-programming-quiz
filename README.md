@@ -38,3 +38,27 @@ This is my second independent project for the Epicodus bootcamp program. The goa
 ## External Libraries Used
 - Bootstrap v5.0.1
 - jQuery v3.6.0
+
+## Sources
+
+Descriptions for the various languages were sourced from the following pages:
+
+##### JavaScript
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript
+- https://www.hackreactor.com/blog/what-is-javascript-used-for
+
+##### Python
+- https://www.python.org/doc/essays/blurb/
+
+##### C#
+- https://stackify.com/what-is-c-used-for/
+
+##### Java
+- https://en.wikipedia.org/wiki/Java_(programming_language)
+
+##### Swift
+- https://developer.apple.com/swift/
+- https://www.altexsoft.com/blog/engineering/the-good-and-the-bad-of-swift-programming-language/
+
+##### PHP
+- https://www.thoughtfulcode.com/why-use-php/
