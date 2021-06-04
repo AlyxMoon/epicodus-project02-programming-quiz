@@ -1,8 +1,9 @@
 
-const main = () => {
+const main = (name) => {
   const questionnaireResults = new QuestionnaireResultsManager({
     selectorContainer: '.questionnaire-results',
     template: templateLanguages,
+    username: name,
     languages, // defined in js/data/languages.js
   })
 
@@ -69,4 +70,14 @@ const main = () => {
   }
 }
 
-$(main) // modern replacement for $(document).ready(function () {})
+$(function () { // modern replacement for $(document).ready(function () {})
+  $('form').on('submit', function (event) {
+    event.preventDefault()
+    $('form button').trigger('blur')
+    
+    const name = $('form input').val() || 'Anonymous'
+    
+    $('form').slideUp()
+    window.setTimeout(() => main(name), 500)
+  })
+}) 

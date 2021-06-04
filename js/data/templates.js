@@ -129,6 +129,7 @@ const templateLanguageCard = ({
 
 const templateLanguages = ({ 
   languages = [],
+  username = '',
 } = {}) => {
 
   const buttonContent = `
@@ -144,7 +145,7 @@ const templateLanguages = ({
 
   return `
     <header class="d-flex justify-content-between align-items-start">
-      <h2 class="my-3">Results</h2>
+      <h2 class="my-3">Results for ${username}</h2>
 
       ${buttonContent}
     </header>
