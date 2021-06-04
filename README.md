@@ -15,7 +15,6 @@ This is my second independent project for the Epicodus bootcamp program. The goa
 ## Objectives
 - `Commits are made regularly with clear messages that finish the phrase 'It will...`
 - `The project repo contains a README that includes: author name, project name, description, setup instructions, link to GitHub Pages, and copyright info.`
-- `Site is successfully deployed to GitHub pages.`
 - `Project is in a polished, portfolio-quality state.`
 - `Required content was in place by the deadline.`
 - `Project demonstrates understanding of this week's concepts. If prompted, you can discuss your code with an instructor using the correct terminology.`
