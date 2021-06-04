@@ -3,13 +3,14 @@ class QuestionnaireResultsManager {
     selectorContainer = '',
     template = () => '',
     languages = [],
+    username = '',
 
     callbackResetQuestionnaire = () => {},
   } = {}) {
     this.selectorContainer = selectorContainer
     this.template = template
-
     this.languages = deepCopy(languages)
+    this.username = username
 
     this.callbackResetQuestionnaire = callbackResetQuestionnaire
   }
@@ -30,6 +31,7 @@ class QuestionnaireResultsManager {
   render () {      
     $(this.selectorContainer).html(this.template({
       languages: this.languages,
+      username: this.username,
     }))
 
     this.addEventListeners()
