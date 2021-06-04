@@ -97,12 +97,12 @@ const templateLanguageCard = ({
     <p>${description}</p>
   </div>
 </div>
-`
+`.trim()
 
 const templateLanguages = ({ 
   languages = [],
 } = {}) => `
 <div class="card-group">
-  ${languages.map(templateLanguageCard)}
+  ${languages.map(templateLanguageCard).join('')}
 </div>
-`
+`.trim()

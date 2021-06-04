@@ -37,6 +37,20 @@ class QuestionnaireManager {
       swift: 0,
     }
 
+    for (const page of this.pages) {
+      for (let i = 0; i < page.questions.length; i++) {
+        const values = page.questions[i].values || []
+
+        for (const value of values) {
+          if (value.type === 'language') {
+            let points = value.points
+            let modifier = page.questions.length - i
+
+            results[value.val] += (points * modifier)
+          }
+        }
+      }
+    }
 
     return results
   }
