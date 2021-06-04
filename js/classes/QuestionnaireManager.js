@@ -28,14 +28,17 @@ class QuestionnaireManager {
   }
 
   calculateResults () {
-    return {
-      csharp: 10,
-      java: 5,
-      javascript: 23,
-      php: 1,
+    const results = {
+      csharp: 0,
+      java: 0,
+      javascript: 0,
+      php: 0,
       python: 0,
       swift: 0,
     }
+
+
+    return results
   }
 
   addEventListeners () {
