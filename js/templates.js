@@ -19,14 +19,12 @@ templateQuestionCodeBlock = ({
   const bottomButtonDisabled = order >= total - 1
 
   return `
-    <div 
-      class="input-group question-codeblock"
-      style="order: ${order};"
-    >
+    <div class="input-group question-codeblock">
       <div class="border d-flex flex-column justify-content-stretch">
         <button 
           class="btn btn-outline-secondary border-top-0 border-start-0 border-end-0 border-bottom rounded-none"
           data-direction="up"
+          data-index="${order}"
           ${topButtonDisabled ? 'disabled' : ''}
           ${topButtonDisabled ? 'aria-disabled="true"' : ''}
         >
@@ -36,6 +34,7 @@ templateQuestionCodeBlock = ({
         <button 
           class="btn btn-outline-secondary border-top-0 border-start-0 border-end-0 border-bottom-0 rounded-none"
           data-direction="down"
+          data-index="${order}"
           ${bottomButtonDisabled ? 'disabled' : ''}
           ${bottomButtonDisabled ? 'aria-disabled="true"' : ''}
         >
