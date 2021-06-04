@@ -1,0 +1,19 @@
+.languages-container {
+  display: none;
+}
+
+code {
+  white-space: pre-line;
+}
+
+.rounded-none {
+  border-radius: 0px !important;
+}
+
+button {
+  height: 50%;
+}
+
+.input-group + .input-group {
+  margin-top: 1rem;
+}
